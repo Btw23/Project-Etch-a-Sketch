@@ -1,0 +1,23 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  height: 370px;
+  width: 355px;;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridDiv {
+  border: 1px solid grey;
+  width: 20px;
+  height: 20px;
+  user-select: none;
+}
