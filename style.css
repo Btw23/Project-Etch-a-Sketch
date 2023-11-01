@@ -9,8 +9,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
-  height: 370px;
-  width: 355px;;
+  height: 500px;
+  width: 500px;
+  border: 1px solid yellow;
   justify-content: center;
   align-items: center;
 }
@@ -20,4 +21,19 @@ body {
   width: 20px;
   height: 20px;
   user-select: none;
+}
+
+.row {
+  flex: 1;
+  user-select: none;
+}
+
+.cell {
+  flex: 1;
+  border: 1px solid gray;
+  user-select: none;
+}
+
+.blue {
+  background-color: blue;
 }

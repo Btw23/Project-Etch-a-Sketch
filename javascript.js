@@ -1,13 +1,32 @@
 const grid = document.querySelector(".container");
 
-for (let i = 0; i < 256; i++) {
-  const gridDiv = document.createElement("div");    
-  grid.appendChild(gridDiv);
-  gridDiv.classList.add("gridDiv");
- }
+function createGrid(size) {
+  size = prompt("Choose a size");
+  for (let i = 0; i < size; i++) {
+    if (size > 100) {
+      size = 16;
+      alert("The size cannot be higher than 100! \n16 set by default.")
+    }
+
+    const row = document.createElement("div");
+    row.classList.add("row");
+    grid.appendChild(row);
+    row.style.height = 100 + "%";
+
+    for (j = 0; j < size; j++) {
+      const cell = document.createElement("div")
+      cell.classList.add("cell");
+      row.appendChild(cell);
+      cell.style.height = ((500 / size) - 2) + "px";
+    }
+  }
+}
+
+createGrid()
+
 
 function paint(event) {
-  event.target.closest(".gridDiv")?.setAttribute("style", "background: blue;");
+  event.target.closest(".cell")?.classList.add("blue")
 }
 
 grid.addEventListener("mousedown", (event) => {
