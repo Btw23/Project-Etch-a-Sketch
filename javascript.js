@@ -1,7 +1,22 @@
 const grid = document.querySelector(".container");
+const slider = document.querySelector(".slider");
+const sliderDiv = document.getElementById("sliderDiv");
+const p = document.querySelector("p")
+
+// fix slider
+
+slider.addEventListener("change", () => {
+  size = slider.value;
+  createGrid(size);
+})
+
+slider.addEventListener("input", () => {
+  size = slider.value;
+  p.textContent = `${size} x ${size}`;
+})
 
 function createGrid(size) {
-  size = prompt("Choose a size");
+  grid.innerHTML = "";
   for (let i = 0; i < size; i++) {
     if (size > 100) {
       size = 16;
@@ -22,11 +37,11 @@ function createGrid(size) {
   }
 }
 
-createGrid()
-
+let test = "blue";
 
 function paint(event) {
-  event.target.closest(".cell")?.classList.add("blue")
+  let paintCell = event.target.closest(".cell")
+  paintCell.style.backgroundColor = test;
 }
 
 grid.addEventListener("mousedown", (event) => {
@@ -34,8 +49,20 @@ grid.addEventListener("mousedown", (event) => {
   grid.addEventListener("mouseover", paint);
 })
 
-grid.addEventListener("mouseup", (event) => {
+document.addEventListener("mouseup", (event) => {
   grid.removeEventListener("mouseover", paint);
+})
+
+const button = document.querySelector("#changeColor")
+
+button.addEventListener("click", () => {
+  test = "green";
+})
+
+const erase = document.querySelector("#erase");
+
+erase.addEventListener("click", (event) => {
+  createGrid(size);
 })
 
 
