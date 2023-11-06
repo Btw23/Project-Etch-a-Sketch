@@ -3,8 +3,6 @@ const slider = document.querySelector(".slider");
 const sliderDiv = document.getElementById("sliderDiv");
 const p = document.querySelector("p")
 
-// fix slider
-
 slider.addEventListener("change", () => {
   size = slider.value;
   createGrid(size);
@@ -37,11 +35,11 @@ function createGrid(size) {
   }
 }
 
-let test = "blue";
+let chooseColor = "#c2c3cf";
 
 function paint(event) {
   let paintCell = event.target.closest(".cell")
-  paintCell.style.backgroundColor = test;
+  paintCell.style.backgroundColor = chooseColor;
 }
 
 grid.addEventListener("mousedown", (event) => {
@@ -53,16 +51,36 @@ document.addEventListener("mouseup", (event) => {
   grid.removeEventListener("mouseover", paint);
 })
 
-const button = document.querySelector("#changeColor")
-
-button.addEventListener("click", () => {
-  test = "green";
-})
-
 const erase = document.querySelector("#erase");
 
 erase.addEventListener("click", (event) => {
   createGrid(size);
 })
 
+const selectColor = document.querySelector("#selectColor");
 
+selectColor.addEventListener("input", () => {
+  chooseColor = selectColor.value;
+})
+
+const characters = ["a", "b", "c", "d", "e", "f", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+
+function randomColor() {
+  chooseColor = "#";
+  for (let i = 0; i < 6; i++) {
+    chooseColor += characters[Math.floor(Math.random() * 16)];
+  }
+}
+
+const randomCheckbox = document.querySelector("#randomCheckbox");
+
+randomCheckbox.addEventListener("change", () => {
+  if (randomCheckbox.checked) {
+    grid.addEventListener("mouseover", randomColor);
+
+  } else {
+    grid.removeEventListener("mouseover", randomColor)
+    chooseColor = selectColor.value;
+  }
+})
